@@ -40,7 +40,7 @@ public class MemberUpdateController {
 		logger.debug("Member : {}", memberVo);
 		model.addAttribute("memberVo", memberVo);
 		
-		return "tiles.member.memberUpdateContent";	
+		return "member/memberUpdate";	
 	}
 	
 	

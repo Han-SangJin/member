@@ -89,7 +89,7 @@ public class MemberRegistController {
 		
 		//try {
 		if(insertCnt == 1){
-			return "member/memberList";
+			return "redirect:/memberList/view";
 		//}catch() {
 			
 		//}

@@ -50,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="./resources/bootstrap/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+								<img src="/sources/bootstrap/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Brad Diesel <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
@@ -65,7 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="./resources/bootstrap/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+								<img src="/sources/bootstrap/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										John Pierce <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
@@ -80,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="./resources/bootstrap/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+								<img src="/sources/bootstrap/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Nora Silvester <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
@@ -119,13 +119,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		</nav>
 		<!-- /.navbar -->
 
-
+		
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="/" class="brand-link">
-				<img src="./resources/images/line.png" class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="brand-text font-weight-light">회원 관리</span>
+				<img src="/sources/images/line.png" class="brand-image img-circle elevation-3" style="opacity: .8">
+				<span class="brand-text font-weight-light">정보 수정</span>
 			</a>
 
 			<!-- Sidebar -->
@@ -133,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<img src="./profile/sally.png" class="img-circle elevation-2" alt="User Image">
+						<img src="/sources/profile/sally.png" class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
 						<div class="row">
@@ -153,7 +153,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- /.sidebar -->
 		</aside>
-
+		
 
 		<div id="if_list_div" style="position: relative; padding: 0; overflow: hidden;">
 			<!-- Content Wrapper. Contains page content -->
@@ -163,7 +163,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<section class="content register-page" style="height:100%;">
 					<div class="container-fluid">
 						<div class="login-logo">
-							<b>회원 등록</b>
+							<b>정보 수정</b>
 						</div>
 						<!-- form start -->
 						<div class="card">
@@ -182,16 +182,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											</div>
 										</div>
 										<br />
-									</div>
-									
-									<div class="form-group row">
-										<label for="id" class="col-sm-3" style="font-size: 0.9em;">
-											<span style="color: red; font-weight: bold;">*</span>아이디
-										</label>
-										<div class="col-sm-9 input-group-sm">
-											<input name="id" type="text" class="form-control" id="id" placeholder="회원 id">
-										</div>
-									</div>
+									</div> 
 									
 									<div class="form-group row">
 										<label class="col-sm-3" style="font-size: 0.9em;">
@@ -206,7 +197,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<label for="pwd" class="col-sm-3" style="font-size: 0.9em;">
 											<span style="color: red; font-weight: bold;">*</span>패스워드</label>
 										<div class="col-sm-9 input-group-sm">
-											<input class="form-control" name="pwd" type="password" class="form-control" id="pwd" placeholder="비밀번호" />
+											<input class="form-control" name="pass" type="password" class="form-control" id="pass" placeholder="비밀번호" value=""/>
 										</div>
 									</div>
 									
@@ -215,7 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<span style="color: red; font-weight: bold;">*</span>이 름
 										</label>
 										<div class="col-sm-9 input-group-sm">
-											<input class="form-control" name="name" type="text" id="name" placeholder="이름" />
+											<input class="form-control" name="usernm" type="text" id="usernm" placeholder="이름" />
 										</div>
 
 									</div>
@@ -247,11 +238,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<div class="card-footer">
 										<div class="row">
 											<div class="col-sm-6">
-												<button type="button" id="registBtn" class="btn btn-info">등록</button>
+												<button type="submit" id="registBtn" class="btn btn-info">수정완료</button>
 											</div>
 
 											<div class="col-sm-6">
-												<button type="button" id="cancelBtn" onclick="CloseWindow();" class="btn btn-default float-right">&nbsp;&nbsp;&nbsp;취 &nbsp;&nbsp;소&nbsp;&nbsp;&nbsp;</button>
+												<button type="button" id="cancelBtn"  onclick="window.history.back()" class="btn btn-default float-right">&nbsp;뒤&nbsp;&nbsp;로&nbsp;&nbsp;가&nbsp;&nbsp;기&nbsp;</button>
+												<button type="button" id="cancelBtn" onclick="setinput()" class="btn btn-default float-right">&nbsp;&nbsp;&nbsp;리 &nbsp;&nbsp;셋&nbsp;&nbsp;&nbsp;</button>
 											</div>
 
 										</div>
@@ -306,7 +298,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
-			 
+
+
+		// 널처리 어케함?
+		function setinput(){
+			
+			var usernm = document.getElementById('usernm');
+			usernm.value = null;
+
+			var pass = document.getElementById('pass');
+			pass.value = null;
+
+			var alias = document.getElementById('alias');
+			alias.value = null;
+
+			var addr1 = document.getElementById('addr1');
+			addr1.value = null;
+
+			var addr2 = document.getElementById('addr2');
+			addr2.value = null;
+
+			var zipcode = document.getElementById('zipcode');
+			zipcode.value = null;
+
+			var filename = document.getElementById('filename');
+			filename.value = null;
+
+			var filename = document.getElementById('filename');
+			filename.value = null;
+
+			/* $('#userid').empty(); */
+	/*  	userid, usernm, pass, alias, addr1, addr2, zipcode, filename, filename     */
+		}
 		
 	</script>
 </body>

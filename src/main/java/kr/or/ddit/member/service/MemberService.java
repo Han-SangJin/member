@@ -76,13 +76,13 @@ public class MemberService implements MemberServiceI {
 		SqlSession sqlSession = MybatisUtil.getSession();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("selectAllBoard", memberDao.selectMemberPageList(sqlSession,pageVo));
+		map.put("memberList", memberDao.selectMemberPageList(sqlSession,pageVo));
 		
 		
 		// 15건 ==(페이지사이즈 7)==> 3페이지
 		// 15/7 ==  2.14.. ==(올림)==> 3페이지 
 		int totalCnt = memberDao.selectMemberTotalCnt(sqlSession);
-		int pages = (int)Math.ceil((double)totalCnt/7);
+		int pages = (int)Math.ceil((double)totalCnt/pageVo.getPageSize());
 		map.put("pages", pages);
 		
 		sqlSession.close();

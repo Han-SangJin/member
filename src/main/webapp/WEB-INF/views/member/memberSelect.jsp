@@ -1,33 +1,25 @@
-<%@page import="kr.or.ddit.member.model.MemberVo"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-
-
-<%
-    	List<MemberVo> memberList = (List<MemberVo>) session.getAttribute("memberList");
-%>    
-
-
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<title>회원 리스트</title>
+
+
+
+
+<title>상세 보기</title>
 
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="/sources/bootstrap/plugins/fontawesome-free/css/all.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="/sources/bootstrap/dist/css/adminlte.min.css">
-
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -41,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<li class="nav-item d-none d-sm-inline-block"><a href="#" class="nav-link">HOME</a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a href="#;" class="nav-link">회원관리</a></li>
 			</ul>
-			
+
 			<!-- SEARCH FORM -->
 			<form class="form-inline ml-3">
 				<div class="input-group input-group-sm">
@@ -53,7 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 				</div>
 			</form>
-			
+ 
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
 				<!-- Messages Dropdown Menu -->
@@ -108,8 +100,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
 					</div></li>
 				<!-- Notifications Dropdown Menu -->
-				<li class="nav-item dropdown"><a class="nav-link" data-toggle="dropdown" href="#"> <i class="far fa-bell"></i> <span class="badge badge-warning navbar-badge">15</span>
-				</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link" data-toggle="dropdown" href="#">
+						<i class="far fa-bell"></i> <span class="badge badge-warning navbar-badge">15</span>
+					</a>
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 						<span class="dropdown-header">15 Notifications</span>
 						<div class="dropdown-divider"></div>
@@ -133,8 +127,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="/" class="brand-link"> <img src="/sources/images/line.png" class="brand-image img-circle elevation-3" style="opacity: .8"> <span
-				class="brand-text font-weight-light">사용자관리</span>
+			<a href="/" class="brand-link">
+				<img src="/sources/images/line.png" class="brand-image img-circle elevation-3" style="opacity: .8">
+				<span class="brand-text font-weight-light">사용자관리</span>
 			</a>
 
 			<!-- Sidebar -->
@@ -164,140 +159,103 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		</aside>
 
 
-		<div id="if_list_div" style="position: relative; padding: 0; overflow: hidden; height: 750px;">
-			<div class="content-wrapper" style="min-height: 584px;">
-				<!-- Content Header (Page header) -->
-				<section class="content-header">
-					<div class="container-fluid">
-						<div class="row md-2">
-							<div class="col-sm-6">
-								<h1>회원리스트</h1>
-							</div>
-							<div class="col-sm-6">
-								<ol class="breadcrumb float-sm-right">
-									<li class="breadcrumb-item">회원리스트</li>
-									<li class="breadcrumb-item">목록</li>
-								</ol>
-							</div>
-						</div>
-					</div>
-				</section>
-				<!-- Main content -->
-				<section class="content">
-					<div class="card">
-						<div class="card-header with-border">
-							<a href="/memberRegist/view"><button type="button" class="btn btn-primary">회원등록</button></a>
-							<div id="keyword" class="card-tools" style="width: 550px;">
-								<div class="input-group row">
-									<!-- sort num -->
-									<select class="form-control col-md-3" name="perPageNum" id="perPageNum" onchange="if(this.value) location.href=(this.value);">
-										<option value="">정렬개수</option>
-										<option value="/memberList/process?ctgr_seq1=${ctgr_seq1}&pageSize=${3}">3</option>
-										<option value="/memberList/process?ctgr_seq1=${ctgr_seq1}&pageSize=${5}">5</option>
-										<option value="/memberList/process?ctgr_seq1=${ctgr_seq1}&pageSize=${7}">7</option>
-											
-									</select>
-									<!-- search bar -->
-									<select class="form-control col-md-3" name="searchType" id="searchType">
-										<option value="">검색구분</option>
-										<option value="i">아이디</option>
-										<option value="n">이름</option>
-										<option value="a">별명</option>
-									</select> <input class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value=""> <span class="input-group-append">
-										<button class="btn btn-primary" type="button" id="searchBtn" data-card-widget="search" onclick="searchList_go(1);">
-											<i class="fa fa-fw fa-search"></i>
-										</button>
-									</span>
-									<!-- end : search bar -->
-								</div>
-							</div>
-						</div>
-						<div class="card-body" style="text-align: center;">
-							<div class="row">
-								<div class="col-sm-12">
-									<table class="table table-bordered">
-										<tbody id="memberList">
-										
-											<c:forEach items="${memberList }" var="member">
-												<tr data-userid="${member.userid }">
-													<td>${member.userid }</td>
-													<td>${member.usernm }</td>
-													<td>${member.alias }</td>
-													<td><fmt:formatDate value="${member.reg_dt }" pattern="yyyy-MM-dd" /></td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-								<!-- col-sm-12 -->
-							</div>
-							<!-- row -->
-						</div>
-						<!-- card-body -->
-						<div class="card-footer">
-							<nav aria-label="member list Navigation">
-								<div class="text-center">
-									<ul class="pagination justify-content-center m-0">
-										<c:choose>
-											<c:when test="${1 < page}">
-												<li class="page-item"><a href="/memberList/process?page=1&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}"><i class="fas fa-angle-double-left"></i></a></li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item"><a href="/memberList/process?page=${page}&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}"><i class="fas fa-angle-double-left"></i></a></li>
-											</c:otherwise>
-										</c:choose>	
-										&nbsp;&nbsp;&nbsp;&nbsp;
-										<c:choose>
-											<c:when test="${1 < page}">
-												<li class="page-item"><a href="/memberList/process?page=${page-1}&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}"><i class="fas fa-angle-left"></i></a></li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item"><a href="/memberList/process?page=${page}&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}"><i class="fas fa-angle-left"></i></a></li>
-											</c:otherwise>
-										</c:choose>	
-										&nbsp;&nbsp;&nbsp;&nbsp;
-											<c:forEach var="i" begin="1" end="${pages }">
-												<c:choose>
-													<c:when test="${i == page}">
-														<li class="page-item active"><a class="page-link" href="#">${i}</a></li>
-													</c:when>
-													<c:otherwise>
-														<li class="page-item active"><a class="page-link" href="/memberList/process?page=${i}&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}">${i}</a></li>
-													</c:otherwise>
-														  
-												</c:choose>				
-											</c:forEach>
-										&nbsp;&nbsp;&nbsp;&nbsp;
-										<c:choose>
-											<c:when test="${page < pages}">
-												<li class="page-item"><a href="/memberList/process?page=${page+1}&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}"><i class="fas fa-angle-right"></i></a></li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item"><a href="/memberList/process?page=${page}&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}"><i class="fas fa-angle-right"></i></a></li>
-											</c:otherwise>
-										</c:choose>	
-										&nbsp;&nbsp;&nbsp;&nbsp;
-										<c:choose>
-											<c:when test="${page < pages}">
-												<li class="page-item"><a href="/memberList/process?page=${pages}&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}"><i class="fas fa-angle-double-right"></i></a></li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item"><a href="/memberList/process?page=${page}&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}"><i class="fas fa-angle-double-right"></i></a></li>
-											</c:otherwise>
-										</c:choose>	
-									
-										
-									</ul>
-								</div>
-							</nav>
+		<div id="if_list_div" style="position: relative; padding: 0; overflow: hidden;">
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
 
+				<!-- Main content -->
+				<section class="content register-page" style="height:100%;">
+					<div class="container-fluid">
+						<div class="login-logo">
+							<b>상세 보기</b>
 						</div>
-						<!-- card-footer -->
+						<!-- form start -->
+						<div class="card">
+							<div class="register-card-body">
+							
+								<form role="form" class="form-horizontal" action="/memberUpdate/process" method="POST" enctype="multipart/form-data">
+									<div class="input-group mb-3">
+										<div class="mailbox-attachments clearfix" style="text-align: center; width:100%;">
+											<div class="mailbox-attachment-icon has-img" id="pictureView" style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;">
+												<img id="pictureViewImg" style="width:100%; height:100%;"/>
+											</div>
+											
+										</div>
+										<br />
+									</div>
+									
+									<div class="form-group row">
+										<label for="id" class="col-sm-3" style="font-size: 0.9em;">
+											<span style="color: red; font-weight: bold;">*</span>아이디
+										</label>
+										<div class="col-sm-9 input-group-sm">
+											<input name="userid" type="text" class="form-control" id="userid" placeholder="회원 id" value="${memberVo.userid}" style="border:none" readonly>
+										</div>
+									</div>
+									
+									<div class="form-group row">
+										<label for="pwd" class="col-sm-3" style="font-size: 0.9em;">
+											<span style="color: red; font-weight: bold;">*</span>패스워드</label>
+										<div class="col-sm-9 input-group-sm">
+											<input class="form-control" name="pass" type="password" class="form-control" id="pass" placeholder="비밀번호" value="${memberVo.pass}" style="border:none" readonly/>
+										</div>
+									</div>
+									
+									<div class="form-group row">
+										<label for="name" class="col-sm-3" style="font-size: 0.9em;">
+											<span style="color: red; font-weight: bold;">*</span>이 름
+										</label>
+										<div class="col-sm-9 input-group-sm">
+											<input class="form-control" name="usernm" type="text" id="usernm" placeholder="이름" value="${memberVo.usernm}" style="border:none" readonly />
+										</div>
+
+									</div>
+									<div class="form-group row">
+										<label for="alias" class="col-sm-3" style="font-size: 0.9em;">별명</label>
+										<div class="col-sm-9 input-group-sm">
+											<input class="form-control" name="alias" type="text" id="alias" placeholder="별명" value="${memberVo.alias}" style="border:none" readonly>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="addr1" class="col-sm-3 control-label">주소</label>
+										<div class="col-sm-3 input-group-sm">
+											<input name="addr1" type="text" class="form-control" id="addr1" placeholder="주소" value="${memberVo.addr1}" style="border:none" readonly>
+										</div>
+										<div class="col-sm-3 input-group-sm">
+											<input name="addr2" type="text" class="form-control" id="addr2" placeholder="상세주소" value="${memberVo.addr2}" style="border:none" readonly>
+										</div>
+										
+										<div class="col-sm-2 input-group-sm">
+											<input name="zipcode" type="text" class="form-control" id="zipcode" placeholder="우편번호" value="${memberVo.zipcode}" style="border:none" readonly>
+										</div>
+										<div class="col-sm-1 input-group-sm">
+											<span class="input-group-append-sm">
+												<button type="button" class="btn btn-info btn-sm btn-append">주소검색</button>
+											</span>
+										</div>
+									</div>
+										
+									<div class="card-footer">
+										<div class="row">
+											<div class="col-sm-6">
+												<a href="/memberUpdate/view?userid=${memberVo.userid}"><button type="button" id="registBtn" class="btn btn-info">수정</button></a>
+											</div>
+	
+											<div class="col-sm-6">
+												<button type="button" id="cancelBtn"  onclick="window.history.back()" class="btn btn-default float-right">&nbsp;뒤&nbsp;&nbsp;로&nbsp;&nbsp;가&nbsp;&nbsp;기&nbsp;</button>
+											</div>
+
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- register-card-body -->
+						</div>
 					</div>
-					<!-- card  -->
 				</section>
+				<!-- /.content -->
 			</div>
+			<!-- /.content-wrapper -->
 		</div>
 	</div>
 
@@ -322,18 +280,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- AdminLTE App -->
 	<script src="/sources/bootstrap/dist/js/adminlte.min.js"></script>
 	<script>
-	$(document).ready(function(){
-		$("#memberList tr").on("click", function(){
-			// data-userid
-			var userid = $(this).data("userid");
-			console.log("userid : " + userid);
-			
-			document.location="/member/process?userid=" + userid;
-		})
-	})
-	  
-	</script>
+		$(document).ready(function(){
+		
+			// picture input의 파일 변경시 이벤트 
+			$("#picture").change(function(){
+			   readURL(this);
+			});
+		});
+		
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+			  
+				reader.onload = function (e) {
+					$('#pictureViewImg').attr('src', e.target.result);  
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
 
+			 
+		
+	</script>
+	<!-- 	userid, usernm, pass, alias, addr1, addr2, zipcode, filename, realfilename-->
 </body>
 </html>
 

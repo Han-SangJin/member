@@ -38,18 +38,14 @@ public class MemberListController {
 	@RequestMapping(path = "/view", method = RequestMethod.GET)	
 	public String getView() {
 		logger.debug("MemberList-Controller.getView()");
-		return "member/memberList";	
+		return "redirect:/memberList/process";	
 	}
-	
-//	public String process(String page_str, @RequestParam(name="page", required = true, defaultValue = "1") int page
-//			, String pageSize_str, @RequestParam(name="pageSize", required = true, defaultValue = "5") int pageSize
-//			, Model model) { 
 	
 	
 	@RequestMapping(path="/process")							
 	public String boardSelectAll(HttpSession session, Model model, MemberVo memberVo,
 			@RequestParam(name="page", required = true, defaultValue = "1") String page_str,
-			@RequestParam(name="pageSize", required = true, defaultValue = "10") String pageSize_str){
+			@RequestParam(name="pageSize", required = true, defaultValue = "5") String pageSize_str){
 
 			logger.debug("Board-Controller.boardselectall()");
 			PageVo pageVo = new PageVo();
@@ -57,12 +53,13 @@ public class MemberListController {
 			pageVo.setPageSize(Integer.parseInt(pageSize_str));
 			Map<String, Object> map = memberService.selectMemberPageList(pageVo);
 			
-			logger.debug("boardselectall() - map : " + map);
-			session.setAttribute("selectAllBoard", map.get("selectAllBoard"));
+			logger.debug("memberList() - map : " + map);
+			session.setAttribute("memberList", map.get("memberList"));
 			model.addAttribute("pages", map.get("pages"));
 			model.addAttribute("page", Integer.parseInt(page_str));
 			model.addAttribute("pageSize", Integer.parseInt(pageSize_str));
-		
+			
+			
 		return "member/memberList";	
 		
 	}

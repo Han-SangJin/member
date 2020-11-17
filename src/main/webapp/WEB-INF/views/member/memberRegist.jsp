@@ -54,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="./resources/bootstrap/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+								<img src="/sources/bootstrap/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Brad Diesel <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
@@ -69,7 +69,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="./resources/bootstrap/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+								<img src="/sources/bootstrap/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										John Pierce <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="./resources/bootstrap/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+								<img src="/sources/bootstrap/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Nora Silvester <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
@@ -128,7 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="/" class="brand-link">
-				<img src="./resources/images/line.png" class="brand-image img-circle elevation-3" style="opacity: .8">
+				<img src="/sources/images/line.png" class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-light">회원 관리</span>
 			</a>
 
@@ -137,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<img src="./profile/sally.png" class="img-circle elevation-2" alt="User Image">
+						<img src="/sources/profile/sally.png" class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
 						<div class="row">
@@ -172,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<!-- form start -->
 						<div class="card">
 							<div class="register-card-body">
-								<form role="form" class="form-horizontal" action="/memberRegist/process" method="POST" enctype="multipart/form-data">
+								<form id="fmin" role="form" class="form-horizontal" action="/memberRegist/process" method="POST" enctype="multipart/form-data">
 									<div class="input-group mb-3">
 										<div class="mailbox-attachments clearfix" style="text-align: center; width:100%;">
 											<div class="mailbox-attachment-icon has-img" id="pictureView" style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;">
@@ -241,7 +241,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<div class="card-footer">
 										<div class="row">
 											<div class="col-sm-6">
-												<button type="submit" id="registBtn" class="btn btn-info">등록</button>
+												<button type="button" id="registBtn" class="btn btn-info">등록</button>
 											</div>
 
 											<div class="col-sm-6">
@@ -311,10 +311,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
  			$('#addr2').val("483-15번지");
  			$('#zipcode').val("33443");
 		}) 
+		
+		
+		$(document).ready(function(){
+			$("#registBtn").on('click', function(){
+				var userid = document.getElementById('userid');
+				var usernm = document.getElementById('usernm');
+				var pass = document.getElementById('pass');
+
+				
+				if(userid.value == "" || usernm.value == "" || pass.value == ""){
+					alert("필수입력 사항을 입력해주세요")
+				}else{
+					$('#fmin').submit();
+				}
+					
+			})
+		}) 
+		
 			 
 		
 	</script>
-	<!-- 	userid, usernm, pass, alias, addr1, addr2, zipcode, filename, realfilename-->
+	<!-- 	userid, usernm, pass, alias, addr1, addr2, zipcode, filename, realfilename
+	
+	
+	-->
 </body>
 </html>
 

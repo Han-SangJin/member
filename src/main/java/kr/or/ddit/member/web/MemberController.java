@@ -45,7 +45,7 @@ public class MemberController {
 		
 		model.addAttribute("memberVo", memberVo);
 		//forward:/WEB-INF/views/   .jsp
-		return "tiles.member.memberContent";	
+		return "member/memberSelect";	
 	}
 	
 	
