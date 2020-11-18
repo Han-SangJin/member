@@ -195,24 +195,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<option value="/memberList/process?ctgr_seq1=${ctgr_seq1}&pageSize=${3}">3</option>
 										<option value="/memberList/process?ctgr_seq1=${ctgr_seq1}&pageSize=${5}">5</option>
 										<option value="/memberList/process?ctgr_seq1=${ctgr_seq1}&pageSize=${7}">7</option>
+											
 									</select>
-									
 									<!-- search bar -->
 									<select class="form-control col-md-3" name="searchType" id="searchType">
 										<option value="">검색구분</option>
 										<option value="i">아이디</option>
 										<option value="n">이름</option>
 										<option value="a">별명</option>
-									</select> 
-									
-										<input class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value=""> 
-									
-									<span class="input-group-append">
+									</select> <input class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value=""> <span class="input-group-append">
 										<button class="btn btn-primary" type="button" id="searchBtn" data-card-widget="search" onclick="searchList_go(1);">
 											<i class="fa fa-fw fa-search"></i>
 										</button>
 									</span>
-									
 									<!-- end : search bar -->
 								</div>
 							</div>
@@ -291,12 +286,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<li class="page-item"><a href="/memberList/process?page=${page}&ctgr_seq1=${ctgr_seq1}&pageSize=${pageSize}"><i class="fas fa-angle-double-right"></i></a></li>
 											</c:otherwise>
 										</c:choose>	
-									
+										
 										
 									</ul>
 								</div>
 							</nav>
-
+							
 						</div>
 						<!-- card-footer -->
 					</div>
@@ -327,11 +322,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- AdminLTE App -->
 	<script src="/sources/bootstrap/dist/js/adminlte.min.js"></script>
 	<script>
-	
 	$(document).ready(function(){
 		$("#memberList tr").on("click", function(){
 			// data-userid
-			var userid = $(this).data("${S_MEMBER.userid}");
+			var userid = $(this).data("userid");
 			console.log("userid : " + userid);
 			
 			document.location="/member/process?userid=" + userid;
@@ -339,7 +333,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	})
 	  
 	</script>
-	
 
 </body>
 </html>

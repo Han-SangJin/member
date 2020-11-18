@@ -76,17 +76,9 @@ public class LoginController {
 		
 		// bean Dao에서 멤버 조회
 //		MemberServiceI memberService = context.getBean("memberService", MemberServiceI.class); context 를 계속 만들어줘야 해서 의존성생김
-		MemberVo dbMember = new MemberVo();
-		
-		try {
-			dbMember = memberService.getMember(userid);
-		}catch(NullPointerException e) {
-			e.printStackTrace();
-			return "redirect:/login/view";
-		}
-		
-		
+		MemberVo dbMember = memberService.getMember(userid);
 		logger.debug("dbMember : {}", dbMember);
+		
 		session.setAttribute("alias", dbMember.getAlias());
 		// db에서 조회한 사용자 정보가 존재하면 ==> main.jsp 로 이동
 		// db에서 조회한 사용자 정보가 존쟂하지 않으면 ==> login.jsp 로 이동

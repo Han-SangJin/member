@@ -29,5 +29,6 @@ public class Profile_Controller {
 		// view package -> profileImgView.java 로 이동
 		
 		// application-context.xml 에 bean 객체 등록
+		
 	}
 }

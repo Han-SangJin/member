@@ -65,5 +65,7 @@ public class MemberController {
 			return "redirect:/member/view?userid="+ userid;
 		}
 	}
-
+	
+	
+	
 }
