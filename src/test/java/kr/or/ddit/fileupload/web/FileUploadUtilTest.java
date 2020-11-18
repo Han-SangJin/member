@@ -29,13 +29,8 @@ public class FileUploadUtilTest extends WebTestConfig {
 	
 	@Test
 	public void uploadTest() throws Exception {
-//		String name, String originalFilename, String contentType, byte[] content
-		
 		InputStream is = getClass().getResourceAsStream("/kr/or/ddit/upload/sally.png");
 		
-//		InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("kr/or/ddit/upload/sally.png");
-		
-//		getClass().getResourceAsStream("src/test/resources/kr/or/ddit/upload/sally.png");
 		FileInputStream fis = new FileInputStream("D:\\A_TeachingMaterial\\6.JspSpring\\workspace\\spring\\src\\test\\resources\\kr\\or\\ddit\\upload\\sally.png");
 		MockMultipartFile file = new MockMultipartFile("file", "sally.png", "image/png", fis); 
 		mockMvc.perform(fileUpload("/fileupload/upload")
@@ -43,7 +38,6 @@ public class FileUploadUtilTest extends WebTestConfig {
 				.param("userid", "brown"))
 		.andExpect(view().name("fileupload/fileupload"))
 		.andExpect(status().isOk());
-		
 	} 
 } 
  

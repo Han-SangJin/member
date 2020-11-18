@@ -7,6 +7,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.Test;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.WebTestConfig;
 
@@ -57,5 +60,28 @@ public class MemberControllerTest extends WebTestConfig {
 		.andExpect(view().name("member/memberSelect"))			// url 값 확인
 		.andExpect(model().attributeExists("memberVo"));	// memberVo 이름으로 된 키값이 있는지 확인
 	}
+	
+	
+	
+	
+	@Test
+	public void memberDeleteSuccessTest() throws Exception {
+		mockMvc.perform(get("/member/memberDelete")
+						.param("userid","brown"))			// 전달할 파라미터
+		.andExpect(status().is(302))	
+		.andExpect(view().name("redirect:/memberList/process"));			// url 값 확인
+	}
+	
+	
+	
+	@Test
+	public void memberDeleteFailTest() throws Exception {
+		mockMvc.perform(get("/member/memberDelete")
+						.param("userid","hsj999"))			// 전달할 파라미터
+		.andExpect(status().is(302))	
+		.andExpect(view().name("redirect:/member/view?userid=hsj999"));			// url 값 확인
+	}
+	
+	
 	
 }

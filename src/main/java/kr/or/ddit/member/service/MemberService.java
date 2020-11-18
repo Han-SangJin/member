@@ -25,11 +25,6 @@ public class MemberService implements MemberServiceI {
 	@Resource(name="memberDao")	// Dao 에서 @Repository로 지정한 이름
 	private MemberDaoI memberDao;
 	
-
-	public void setMemberDao(MemberDaoI memberDao) {
-		this.memberDao = memberDao;
-	}
-	
 	
 	// service 기본 생성자
 	public MemberService() {

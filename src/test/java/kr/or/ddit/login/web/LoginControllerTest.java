@@ -45,35 +45,31 @@ public class LoginControllerTest extends WebTestConfig {
 	public void getViewTest() throws Exception {
 		mockMvc.perform(get("/login/view")) // perform = 목업 실행
 				.andExpect(status().isOk()) // idOk = erorr code : ex)200, 404
-				.andExpect(view().name("login/view")); // name = 페이지이름 가져오기
+				.andExpect(view().name("login")); // name = 페이지이름 가져오기
 	}
 	
 	// 로그인 요청 테스트(정상적인 경우)
 	@Test
 	public void processSuccessTest() throws Exception {
-		mockMvc.perform(post("/login/process").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+		mockMvc.perform(get("/login/process").contentType(MediaType.APPLICATION_FORM_URLENCODED)
 				.param("userid", "brown")
 				.param("pass", "brownPass"))
-		.andExpect(status().is(200)) // 200 은 정상
-		.andExpect(view().name("main")).andExpect(model().attributeExists("to_day"));
+		.andExpect(status().is(302)) // 200 은 정상
+		.andExpect(view().name("redirect:/memberList/process"))
+		.andExpect(model().attributeExists("to_day"));
 
 	}
 
+	
 	// 로그인 요청 테스트(실패)
 	@Test
 	public void processFailTest() throws Exception {
-		MvcResult result = mockMvc
-				.perform(post("/login/process").param("userid", "brown").param("pass", "brownPassFail")).andReturn(); // 비밀번호
-																														// 다르게
-																														// 설정
-		// andReturn() 리턴값 : MvcResult
-
-		ModelAndView mav = result.getModelAndView(); // model 객체와 view 객체를 관리해주는 객체
-														// model 요청 생성
-														// view 응답을 표현해주는 기능
-
-		assertEquals("login/view", mav.getViewName());
-		assertEquals("fail", mav.getModel().get("msg"));
+		mockMvc.perform(get("/login/process")
+				.param("userid", "brown")
+				.param("pass", "brownPassFail"))
+		.andExpect(status().is(302)) // 200 은 정상
+		.andExpect(view().name("redirect:/login/view?userid=brown"));
+		
 	}
 
 }

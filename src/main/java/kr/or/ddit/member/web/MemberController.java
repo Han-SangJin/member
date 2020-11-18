@@ -65,27 +65,5 @@ public class MemberController {
 			return "redirect:/member/view?userid="+ userid;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping("/memberAjaxPage")
-	public String memberAjaxPage() {
-		return "tiles.member.memberAjaxPage";
-	}
-	
-	
-	@RequestMapping("/memberAjax")
-	public String memberAjax(String userid, Model model) {
-		model.addAttribute("memberVo", memberService.getMember(userid));
-		return "jsonView";
-	}
+
 }

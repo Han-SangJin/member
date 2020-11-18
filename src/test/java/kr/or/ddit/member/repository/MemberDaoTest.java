@@ -85,7 +85,7 @@ public class MemberDaoTest extends ModelTestConfig {
 		assertEquals(1, insertCnt);
 	}
 	
-	// @Test	테스트 코드 정지
+	 @Test	//테스트 코드 정지
 	public void insertMember_FAIL_Test() {
 		/***Given***/
 		MemberVo memberVo = new MemberVo("ddit","dditpass","대덕인재","개발원","","","","","");
