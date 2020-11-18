@@ -89,7 +89,7 @@ public class MemberRegistController {
 		
 		//try {
 		if(insertCnt == 1){
-			return "redirect:/memberList/view";
+			return "redirect:/member/view?userid="+ memberVo.getUserid();
 		//}catch() {
 			
 		//}

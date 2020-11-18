@@ -21,7 +21,7 @@
 																							
 <!-- 	<bean id="excelView" class="kr.or.ddit.mvc.view.ExcelDownloadView"/> -->		<!-- excel view 설정  -->						
 																						
-	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>	<!-- Resolver 등록 -->
+<!-- 	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>	 --><!-- Resolver 등록 -->
 	
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="0"/>

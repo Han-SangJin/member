@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -141,7 +142,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 					<div class="info">
 						<div class="row">
-							<a class="col-md-8" href="#" class="d-block">sally(병아리)</a>
+							<a class="col-md-8" href="#" class="d-block">[${S_MEMBER.userid},  ${sessionScope.alias}]</a>
 						</div>
 					</div>
 				</div>
@@ -233,7 +234,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										</div>
 										<div class="col-sm-1 input-group-sm">
 											<span class="input-group-append-sm">
-												<button type="button" class="btn btn-info btn-sm btn-append">주소검색</button>
+												<button id="zipcodeBtn" type="button" class="btn btn-info btn-sm btn-append">주소검색</button>
 											</span>
 										</div>
 									</div>
@@ -245,7 +246,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											</div>
 
 											<div class="col-sm-6">
-												<button type="button" id="cancelBtn" onclick="CloseWindow();" class="btn btn-default float-right">&nbsp;&nbsp;&nbsp;취 &nbsp;&nbsp;소&nbsp;&nbsp;&nbsp;</button>
+												<button type="button" id="cancelBtn" onclick="window.history.back()" class="btn btn-default float-right">&nbsp;&nbsp;&nbsp;취 &nbsp;&nbsp;소&nbsp;&nbsp;&nbsp;</button>
 											</div>
 
 										</div>
@@ -282,6 +283,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<script src="/sources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="/sources/bootstrap/dist/js/adminlte.min.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		$(document).ready(function(){
 		
@@ -302,7 +304,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			}
 		}
 
- 		$(document).ready(function(){
+ 	/* 	$(document).ready(function(){
  			$('#userid').val("hsj3");
  			$('#usernm').val("한상진");
  			$('#pass').val("123");
@@ -310,7 +312,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
  			$('#addr1').val("대전시 대덕구 송촌동");
  			$('#addr2').val("483-15번지");
  			$('#zipcode').val("33443");
-		}) 
+		})  */
 		
 		
 		$(document).ready(function(){
@@ -320,16 +322,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				var pass = document.getElementById('pass');
 
 				
-				if(userid.value == "" || usernm.value == "" || pass.value == ""){
-					alert("필수입력 사항을 입력해주세요")
-				}else{
-					$('#fmin').submit();
-				}
-					
-			})
-		}) 
+					if(userid.value == "" || usernm.value == "" || pass.value == ""){
+						alert("필수입력 사항을 입력해주세요")
+					}else{
+						$('#fmin').submit();
+					}	
+						
+			/* if(userid.value != null){ */
+					/*  alert(userid.value) */
+					/* alert("${sessionScope.memlist.get(0).getUserid()}") }*/
+					/* 
+				 	  for(var i=0; i<${memlist.size()}; i++){
+					 	  	
+							if( userid.value == hsj ){
+								alert("중복된 아이디가 있습니다", userid.value)
+							} 
+				 	  } */
+				})
+			}) 
+			
 		
-			 
+		$(document).ready(function(){
+			$('#zipcodeBtn').on('click', function(){
+			    new daum.Postcode({
+			        oncomplete: function(data) {
+				        console.log(data)
+				        
+				        $('#addr1').val(data.roadAddress);
+				        $('#zipcode').val(data.zonecode);
+			            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+			            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+			        }	
+			    }).open();
+			})
+		
+		})
 		
 	</script>
 	<!-- 	userid, usernm, pass, alias, addr1, addr2, zipcode, filename, realfilename

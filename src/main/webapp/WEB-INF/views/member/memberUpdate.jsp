@@ -125,7 +125,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Brand Logo -->
 			<a href="/" class="brand-link">
 				<img src="/sources/images/line.png" class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="brand-text font-weight-light">정보 수정</span>
+				<span class="brand-text font-weight-light">사용자관리</span>
 			</a>
 
 			<!-- Sidebar -->
@@ -137,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 					<div class="info">
 						<div class="row">
-							<a class="col-md-8" href="#" class="d-block">sally(병아리)</a>
+							<a class="col-md-8" href="#" class="d-block">[${S_MEMBER.userid},  ${sessionScope.alias}]</a>
 						</div>
 					</div>
 				</div>
@@ -166,30 +166,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<b>정보 수정</b>
 						</div>
 						<!-- form start -->
-						<div class="card">
+						<div class="card"> 
 							<div class="register-card-body">
-								<form role="form" class="form-horizontal" >
+								<form id="fmup" role="form" class="form-horizontal" action="/memberUpdate/process" method="POST" enctype="multipart/form-data">
 									<div class="input-group mb-3">
 										<div class="mailbox-attachments clearfix" style="text-align: center; width:100%;">
 											<div class="mailbox-attachment-icon has-img" id="pictureView" style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;">
-												<img id="pictureViewImg" style="width:100%; height:100%;"/>
+												<img id="pictureViewImg" style="width:100%; height:100%;" src="/profileImgView?userid=${memberVo.userid}" />
 											</div>
+											${memberVo.realFilename}
 											<div class="mailbox-attachment-info">
 												<div class="input-group input-group-sm">
-													<input id="picture" class="form-control"
-														   type="file" name="picture" accept=".gif, .jpg, .png" style="height:37px;"/>
+													
+													<input id="picture" class="form-control" type="file" name="realFilename" accept=".gif, .jpg, .png" style="height:37px;"/>
+													 
 												</div>
 											</div>
 										</div>
 										<br />
 									</div> 
 									
+																				
 									<div class="form-group row">
 										<label class="col-sm-3" style="font-size: 0.9em;">
 											아이디
 										</label>
 										<div class="col-sm-9 input-group input-group-sm">
-											<span class="input-group-append-sm">brown</span>
+											<span class="input-group-append-sm">
+											<input name="userid" type="text" class="form-control" id="userid" placeholder="회원 id" value="${memberVo.userid}" style="border:none"></span>
 										</div>
 									</div>
 									
@@ -197,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<label for="pwd" class="col-sm-3" style="font-size: 0.9em;">
 											<span style="color: red; font-weight: bold;">*</span>패스워드</label>
 										<div class="col-sm-9 input-group-sm">
-											<input class="form-control" name="pass" type="password" class="form-control" id="pass" placeholder="비밀번호" value=""/>
+											<input class="form-control" name="pass" type="password" class="form-control" id="pass" placeholder="비밀번호" value="${memberVo.pass}"/>
 										</div>
 									</div>
 									
@@ -206,31 +210,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<span style="color: red; font-weight: bold;">*</span>이 름
 										</label>
 										<div class="col-sm-9 input-group-sm">
-											<input class="form-control" name="usernm" type="text" id="usernm" placeholder="이름" />
+											<input class="form-control" name="usernm" type="text" id="usernm" placeholder="이름" value="${memberVo.usernm}" />
 										</div>
 
 									</div>
 									<div class="form-group row">
 										<label for="alias" class="col-sm-3" style="font-size: 0.9em;">별명</label>
 										<div class="col-sm-9 input-group-sm">
-											<input class="form-control" name="alias" type="text" id="alias" placeholder="별명">
+											<input class="form-control" name="alias" type="text" id="alias" placeholder="별명" value="${memberVo.alias}">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="addr1" class="col-sm-3 control-label">주소</label>
 										<div class="col-sm-3 input-group-sm">
-											<input name="addr1" type="text" class="form-control" id="addr1" placeholder="주소" readonly>
+											<input name="addr1" type="text" class="form-control" id="addr1" placeholder="주소" value="${memberVo.addr1}" readonly>
 										</div>
 										<div class="col-sm-3 input-group-sm">
-											<input name="addr2" type="text" class="form-control" id="addr2" placeholder="상세주소">	
+											<input name="addr2" type="text" class="form-control" id="addr2" placeholder="상세주소" value="${memberVo.addr2}">	
 										</div>
 										
 										<div class="col-sm-2 input-group-sm">
-											<input name="zipcode" type="text" class="form-control" id="zipcode" placeholder="우편번호" readonly>
+											<input name="zipcode" type="text" class="form-control" id="zipcode" placeholder="우편번호" value="${memberVo.zipcode}" readonly>
 										</div>
 										<div class="col-sm-1 input-group-sm">
 											<span class="input-group-append-sm">
-												<button type="button" class="btn btn-info btn-sm btn-append">주소검색</button>
+												<button id="zipcodeBtn" type="button" class="btn btn-info btn-sm btn-append">주소검색</button>
 											</span>
 										</div>
 									</div>
@@ -238,7 +242,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<div class="card-footer">
 										<div class="row">
 											<div class="col-sm-6">
-												<button type="submit" id="registBtn" class="btn btn-info">수정완료</button>
+												<button type="button" id="updateBtn" class="btn btn-info">수정완료</button>
 											</div>
 
 											<div class="col-sm-6">
@@ -280,6 +284,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<script src="/sources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="/sources/bootstrap/dist/js/adminlte.min.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		$(document).ready(function(){
 			// picture input의 파일 변경시 이벤트 
@@ -300,7 +305,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		}
 
 
-		// 널처리 어케함?
 		function setinput(){
 			
 			var usernm = document.getElementById('usernm');
@@ -327,9 +331,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			var filename = document.getElementById('filename');
 			filename.value = null;
 
-			/* $('#userid').empty(); */
 	/*  	userid, usernm, pass, alias, addr1, addr2, zipcode, filename, filename     */
 		}
+
+	
+		$(document).ready(function(){
+			$("#updateBtn").on('click', function(){
+				var usernm = document.getElementById('usernm');
+				var pass = document.getElementById('pass');
+
+				
+				if(usernm.value == "" || pass.value == ""){
+					alert("필수입력 사항을 입력해주세요")
+				}else{
+					$('#fmup').submit();
+				}
+					
+			})
+		}) 
+		
+		
+		$(document).ready(function(){
+			$('#zipcodeBtn').on('click', function(){
+			    new daum.Postcode({
+			        oncomplete: function(data) {
+				        console.log(data)
+				        
+				        $('#addr1').val(data.roadAddress);
+				        $('#zipcode').val(data.zonecode);
+			            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+			            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+			        }	
+			    }).open();
+			})
+		
+		})
 		
 	</script>
 </body>

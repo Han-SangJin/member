@@ -103,7 +103,7 @@ public class LoginController {
 		MemberVo dbMember = memberService.getMember(userid);
 		logger.debug("dbMember : {}", dbMember);
 		
-		 
+		session.setAttribute("alias", dbMember.getAlias());
 		// db에서 조회한 사용자 정보가 존재하면 ==> main.jsp 로 이동
 		// db에서 조회한 사용자 정보가 존쟂하지 않으면 ==> login.jsp 로 이동
 		//dbMember.getPass().equals(pass)
@@ -116,10 +116,9 @@ public class LoginController {
 			// jsp/servlet 기반에서 사용한 코드 : request.setAttribute("to_day", new  Date());
 			model.addAttribute("to_day", new Date());
 			return "redirect:/memberList/process";
-				
+			
 		}else {
-			model.addAttribute("msg","fail");
-			return "login/view";
+			return "redirect:/login/view?userid="+userid;
 		}
 			
 	}

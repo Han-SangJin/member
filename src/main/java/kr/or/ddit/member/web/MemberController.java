@@ -48,6 +48,33 @@ public class MemberController {
 		return "member/memberSelect";	
 	}
 	
+
+	
+	
+	@RequestMapping(path="/memberDelete", method = RequestMethod.GET)							
+	public String memberDelete(Model model, String userid) { 
+		
+		logger.debug("memberDelete - userid : {}", userid);
+		int cnt = memberService.deleteMember(userid);
+		logger.debug("memberDelete - success : {}", cnt);
+		
+		//forward:/WEB-INF/views/   .jsp
+		if(cnt ==1) {
+			return "redirect:/memberList/process";
+		}else {
+			return "redirect:/member/view?userid="+ userid;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	@RequestMapping("/memberAjaxPage")

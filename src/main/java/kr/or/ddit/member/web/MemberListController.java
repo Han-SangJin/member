@@ -52,7 +52,9 @@ public class MemberListController {
 			pageVo.setPage(Integer.parseInt(page_str));
 			pageVo.setPageSize(Integer.parseInt(pageSize_str));
 			Map<String, Object> map = memberService.selectMemberPageList(pageVo);
+			List<MemberVo> memlist = memberService.selectAllMember();
 			
+			session.setAttribute("memlist", memlist);
 			logger.debug("memberList() - map : " + map);
 			session.setAttribute("memberList", map.get("memberList"));
 			model.addAttribute("pages", map.get("pages"));

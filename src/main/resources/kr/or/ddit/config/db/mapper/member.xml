@@ -27,7 +27,7 @@
    
     
    <update id="updateMember" parameterType="String" >
-   		 UPDATE users SET usernm = #{usernm}, pass = #{pass},  alias = #{alias},  addr1 = #{addr1},  addr2 = #{addr2}, zipcode = #{zipcode}
+   		 UPDATE users SET usernm = #{usernm}, pass = #{pass},  alias = #{alias},  addr1 = #{addr1},  addr2 = #{addr2}, zipcode = #{zipcode}, filename = #{filename}, realFilename = #{realFilename}
    		 WHERE userid = #{userid}
    </update>
    

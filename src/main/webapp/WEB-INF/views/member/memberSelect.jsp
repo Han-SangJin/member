@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 					<div class="info">
 						<div class="row">
-							<a class="col-md-8" href="#" class="d-block">sally(병아리)</a>
+							<a class="col-md-8" href="#" class="d-block">[${S_MEMBER.userid},  ${sessionScope.alias}]</a>
 						</div>
 					</div>
 				</div>
@@ -172,16 +172,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<!-- form start -->
 						<div class="card">
 							<div class="register-card-body">
-							
+								
 								<form role="form" class="form-horizontal" action="/memberUpdate/process" method="POST" enctype="multipart/form-data">
 									<div class="input-group mb-3">
 										<div class="mailbox-attachments clearfix" style="text-align: center; width:100%;">
+											
 											<div class="mailbox-attachment-icon has-img" id="pictureView" style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;">
-												<img id="pictureViewImg" style="width:100%; height:100%;"/>
+												
+												<img style="width:100%; height:100%;" src="/profileImgView?userid=${memberVo.userid}" />
+												
 											</div>
 											
 										</div>
-										<br />
+										<br>
 									</div>
 									
 									<div class="form-group row">
@@ -189,7 +192,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<span style="color: red; font-weight: bold;">*</span>아이디
 										</label>
 										<div class="col-sm-9 input-group-sm">
-											<input name="userid" type="text" class="form-control" id="userid" placeholder="회원 id" value="${memberVo.userid}" style="border:none" readonly>
+											<input name="userid" type="text" class="form-control" id="userid" placeholder="(empty)" value="${memberVo.userid}" style="border:none" readonly>
 										</div>
 									</div>
 									
@@ -197,7 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<label for="pwd" class="col-sm-3" style="font-size: 0.9em;">
 											<span style="color: red; font-weight: bold;">*</span>패스워드</label>
 										<div class="col-sm-9 input-group-sm">
-											<input class="form-control" name="pass" type="password" class="form-control" id="pass" placeholder="비밀번호" value="${memberVo.pass}" style="border:none" readonly/>
+											<input class="form-control" name="pass" type="password" class="form-control" id="pass" placeholder="(empty)" value="${memberVo.pass}" style="border:none" readonly/>
 										</div>
 									</div>
 									
@@ -206,31 +209,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<span style="color: red; font-weight: bold;">*</span>이 름
 										</label>
 										<div class="col-sm-9 input-group-sm">
-											<input class="form-control" name="usernm" type="text" id="usernm" placeholder="이름" value="${memberVo.usernm}" style="border:none" readonly />
+											<input class="form-control" name="usernm" type="text" id="usernm" placeholder="(empty)" value="${memberVo.usernm}" style="border:none" readonly />
 										</div>
 
 									</div>
 									<div class="form-group row">
 										<label for="alias" class="col-sm-3" style="font-size: 0.9em;">별명</label>
 										<div class="col-sm-9 input-group-sm">
-											<input class="form-control" name="alias" type="text" id="alias" placeholder="별명" value="${memberVo.alias}" style="border:none" readonly>
+											<input class="form-control" name="alias" type="text" id="alias" placeholder="(empty)" value="${memberVo.alias}" style="border:none" readonly>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="addr1" class="col-sm-3 control-label">주소</label>
 										<div class="col-sm-3 input-group-sm">
-											<input name="addr1" type="text" class="form-control" id="addr1" placeholder="주소" value="${memberVo.addr1}" style="border:none" readonly>
+											<input name="addr1" type="text" class="form-control" id="addr1" placeholder="(empty)" value="${memberVo.addr1}" style="border:none" readonly>
 										</div>
 										<div class="col-sm-3 input-group-sm">
-											<input name="addr2" type="text" class="form-control" id="addr2" placeholder="상세주소" value="${memberVo.addr2}" style="border:none" readonly>
+											<input name="addr2" type="text" class="form-control" id="addr2" placeholder="(empty)" value="${memberVo.addr2}" style="border:none" readonly>
 										</div>
 										
 										<div class="col-sm-2 input-group-sm">
-											<input name="zipcode" type="text" class="form-control" id="zipcode" placeholder="우편번호" value="${memberVo.zipcode}" style="border:none" readonly>
+											<input name="zipcode" type="text" class="form-control" id="zipcode" placeholder="(empty)" value="${memberVo.zipcode}" style="border:none" readonly>
 										</div>
 										<div class="col-sm-1 input-group-sm">
 											<span class="input-group-append-sm">
-												<button type="button" class="btn btn-info btn-sm btn-append">주소검색</button>
 											</span>
 										</div>
 									</div>
@@ -239,8 +241,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<div class="row">
 											<div class="col-sm-6">
 												<a href="/memberUpdate/view?userid=${memberVo.userid}"><button type="button" id="registBtn" class="btn btn-info">수정</button></a>
+												
+												<a href="/member/memberDelete?userid=${memberVo.userid}"><button type="button" id="deleteBtn" class="btn btn-info">삭제</button></a>
 											</div>
-	
+												
 											<div class="col-sm-6">
 												<button type="button" id="cancelBtn"  onclick="window.history.back()" class="btn btn-default float-right">&nbsp;뒤&nbsp;&nbsp;로&nbsp;&nbsp;가&nbsp;&nbsp;기&nbsp;</button>
 											</div>
@@ -299,7 +303,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			}
 		}
 
-			 
+		
+		
+		$(document).ready(function(){
+
+			$('#deleteBtn').on('click',function(){
+				alert("아이디가 삭제됩니다.")
+				
+			})
+			
+		}); 
 		
 	</script>
 	<!-- 	userid, usernm, pass, alias, addr1, addr2, zipcode, filename, realfilename-->

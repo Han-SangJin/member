@@ -1,5 +1,8 @@
 package kr.or.ddit.member.web;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.annotation.MultipartConfig;
 
@@ -9,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.login.web.LoginController;
 import kr.or.ddit.member.model.MemberVo;
@@ -44,16 +50,35 @@ public class MemberUpdateController {
 	}
 	
 	
+//	String userid, String usernm, String alias, String pass, String addr1, String addr2 ,String zipcode,
 	@RequestMapping(path="/process", method = RequestMethod.POST)							
-	public String process(Model model, String userid, String usernm, String alias, String pass, String addr1, String addr2 ,String zipcode) { 
-		logger.debug("arameter : {}, {}, {}, {}, {}, {}, {}", userid, usernm, alias, pass, addr1, addr2, zipcode );
+	public String process(Model model, MemberVo memberVo, BindingResult br ,@RequestPart("realFilename") MultipartFile file) { 
 		
-		MemberVo memberVo = new MemberVo(userid,pass,usernm,alias,addr1,addr2,zipcode);
+		logger.debug("memberUpdate - memberVo : {}", memberVo );
+		logger.debug("filename : {} / realFilename : {} / size : {}", file.getName(), file.getOriginalFilename(), file.getSize());
+		
+		
+		String Filename = "D:\\upload\\" + file.getOriginalFilename();
+		File uploadFile = new File(Filename);
+		
+		try {
+			file.transferTo(uploadFile);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		logger.debug("---------------------통과-------------------");
+		
+		memberVo.setFilename(Filename);
+		memberVo.setRealFilename(file.getOriginalFilename());
+		
+		logger.debug("memberUpdate -memberVo : {}", memberVo );
+		
 		int updateCnt = memberService.updateMember(memberVo);
 		System.out.println("updateCnt ::: " + updateCnt);
 		
 		if(updateCnt == 1){
-			return "redirect:/member/view?userid="+ userid;
+			return "redirect:/member/view?userid="+ memberVo.getUserid();
 		}else {
 			return "tiles.member.memberUpdateContent";	
 		}

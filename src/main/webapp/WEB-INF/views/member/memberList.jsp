@@ -146,7 +146,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 					<div class="info">
 						<div class="row">
-							<a class="col-md-8" href="#" class="d-block">sally(병아리)</a>
+							<a class="col-md-8" href="#" class="d-block">[${S_MEMBER.userid},  ${sessionScope.alias}]</a>
 						</div>
 					</div>
 				</div>
