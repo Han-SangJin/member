@@ -192,6 +192,6 @@ public class memberserviceTest extends ModelTestConfig {
 		int tatalcnt = memberService.selectMemberTotalCnt();
 		
 		/***Then***/
-		assertEquals(33, tatalcnt);
+		assertEquals(32, tatalcnt);
 	}
 }

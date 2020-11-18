@@ -201,7 +201,7 @@ public class MemberDaoTest extends ModelTestConfig {
 		int tatalcnt = memberDao.selectMemberTotalCnt(sqlSession);
 		
 		/***Then***/
-		assertEquals(33, tatalcnt);
+		assertEquals(32, tatalcnt);
 	}
 
 }
