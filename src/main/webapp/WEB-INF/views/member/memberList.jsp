@@ -183,10 +183,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 				</section>
 				<!-- Main content -->
-				<section class="content">
+				<section class="content">													<!--    버 	튼 	등 	록   	 하 	는	 곳  -->
 					<div class="card">
 						<div class="card-header with-border">
 							<a href="/memberRegist/view"><button type="button" class="btn btn-primary">회원등록</button></a>
+							<a href="/APIview/googlemapview"><button type="button" class="btn btn-primary">구글지도</button></a>
+							<a href="/APIview/navermapview"><button type="button" class="btn btn-primary">네이버지도</button></a>
 							<div id="keyword" class="card-tools" style="width: 550px;">
 								<div class="input-group row">
 									<!-- sort num -->

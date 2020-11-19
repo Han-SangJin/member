@@ -42,12 +42,12 @@ body.login-page {
  				
 				<form action="/login/process" method="get">
 					<div class="form-group has-feedback">
-						<input type="text" class="form-control" name="userid" id="userid" placeholder="아이디를 입력하세요" value="${param.userid}">  
+						<input type="text" class="form-control" name="userid" id="userid" placeholder="아이디를 입력하세요" value="brown">  
 						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 					</div>	
 					<div class="form-group has-feedback">
 						<input type="password" class="form-control" name="pass"
-							placeholder="패스워드를 입력하세요" value=""> <span
+																placeholder="패스워드를 입력하세요" value="brownPass"> <span
 							class="glyphicon glyphicon-lock form-control-feedback"></span>
 					</div>
 					<div class="row">
