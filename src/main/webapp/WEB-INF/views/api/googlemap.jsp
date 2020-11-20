@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>구글지도사용하기</title>
+<title>구글API 지도</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBJTaYHbcZLVZVx9AC2s5IqC7NTSv_ksvw" ></script>
 <style>

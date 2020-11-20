@@ -189,6 +189,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<a href="/memberRegist/view"><button type="button" class="btn btn-primary">회원등록</button></a>
 							<a href="/APIview/googlemapview"><button type="button" class="btn btn-primary">구글지도</button></a>
 							<a href="/APIview/navermapview"><button type="button" class="btn btn-primary">네이버지도</button></a>
+							<a href="/APIview/chatbotview"><button type="button" class="btn btn-primary">챗봇</button></a>
 							<div id="keyword" class="card-tools" style="width: 550px;">
 								<div class="input-group row">
 									<!-- sort num -->

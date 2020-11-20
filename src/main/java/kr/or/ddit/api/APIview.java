@@ -16,14 +16,11 @@ public class APIview {
 	
 	
 	
-	
-	
 	@RequestMapping(path = "/googlemapview", method = RequestMethod.GET )	
 	public String GoogleMapView() {
 		logger.debug("====GoogleMapAPI====");
 		return "api/googlemap";
 	}
-	
 	
 	
 	
@@ -36,4 +33,10 @@ public class APIview {
 	
 	
 	
+	
+	@RequestMapping(path = "/chatbotview", method = RequestMethod.GET )	
+	public String ChatBotView() {
+		logger.debug("====ChatBotAPI====");
+		return "api/chatbot";
+	}
 }
