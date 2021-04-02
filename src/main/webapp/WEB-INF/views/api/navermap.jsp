@@ -257,7 +257,7 @@ function makeAddress(item) {
             }
         }
     }
-
+	
     return [sido, sigugun, dongmyun, ri, rest].join(' ');
 }
 

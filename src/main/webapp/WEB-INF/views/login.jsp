@@ -70,7 +70,7 @@ body.login-page {
 		</div>
 	</div>
 	<!-- /.login-box -->
-
+	
 	<!-- jQuery -->
 	<script src="/sources/bootstrap/plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->

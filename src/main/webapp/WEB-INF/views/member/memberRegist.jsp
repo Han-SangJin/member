@@ -132,7 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<img src="/sources/images/line.png" class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-light">회원 관리</span>
 			</a>
-
+			
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Sidebar user panel (optional) -->
@@ -286,7 +286,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		$(document).ready(function(){
-		
+			
 			// picture input의 파일 변경시 이벤트 
 			$("#picture").change(function(){
 			   readURL(this);
@@ -303,7 +303,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
-
+		
  	/* 	$(document).ready(function(){
  			$('#userid').val("hsj3");
  			$('#usernm').val("한상진");
@@ -327,7 +327,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					}else{
 						$('#fmin').submit();
 					}	
-						
+		
 			/* if(userid.value != null){ */
 					/*  alert(userid.value) */
 					/* alert("${sessionScope.memlist.get(0).getUserid()}") }*/

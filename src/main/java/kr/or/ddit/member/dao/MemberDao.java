@@ -75,7 +75,7 @@ public class MemberDao implements MemberDaoI {
 		//sqlSession.close();
 		return insertCnt;
 	}
-
+	
 	
 	@Override
 	public int deleteMember(String userid) {

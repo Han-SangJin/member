@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/api/ibsheet8.jsp"%>
+			
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -28,6 +30,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Theme style -->
 <link rel="stylesheet" href="/sources/bootstrap/dist/css/adminlte.min.css">
 
+<script>
+
+function init(){
+    //시트의 초기화 속성 설정
+    var OPT = {
+            Cols:[
+                {Header: "부서", Name: "dept", Type: "Enum", Enum:setEnum('dept'), EnumKeys:setEnumKeys('dept') },
+                {Header: "직급", Name: "pos", Type: "Enum", Enum:setEnum('position'), EnumKeys:setEnumKeys('position') }
+            ]
+        };	
+    //초기 데이터 설정
+    var DATA = [
+        {'dept':'02','pos':'B0'},
+        {'dept':'03','pos':'B1'},
+    ];
+	
+    IBSheet.create({
+        id: "sheet",        // 시트 객체 ID
+        el: "sheetDiv",     // 시트를 생성할 DIV객체 ID
+        options: OPT,       // 초기화 구문 변수
+        data: DATA          // 초기 로딩 데이터
+    });
+}
+
+$(document).ready(function(){
+	init();
+});
+
+</script>
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -237,6 +268,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</div>
 							<!-- row -->
 						</div>
+						
+						<!-- ibsheet -->
+						<div id="sheetDiv" style="width:100%; height:200px;"></div>
+							
 						<!-- card-body -->
 						<div class="card-footer">
 							<nav aria-label="member list Navigation">

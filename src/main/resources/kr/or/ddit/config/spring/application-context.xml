@@ -63,9 +63,9 @@
 		<property name="prefix" value="/WEB-INF/views/"/>
 											<!--  ex)  localhost/WEB-INF/views   +   /member/member  +  .jsp -->		
 		<property name="suffix" value=".jsp"/>
-		
+	
 	</bean>
- 
+ 	
 	
 	<!-- @Controller, @RequestMapping,
 		HanlderMapping, HandlerAdapater,
